@@ -15,7 +15,10 @@ class SongsController < ApplicationController
 
   def create
     #raise params.inspect
+    # find or create an artist by artist_name
     artist = Artist.find_or_create_by(name: song_params[:artist_name])
+    
+    # .build creates a new song object
     @song = artist.songs.build(song_params)
     
     if @song.save
